@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+    <h2> {{ page_title }} </h2> 
+        <p> Initally containing only thirteen dwarves, which was considered an unlucky amount, Bilbo joined as their fourteenth
+        member. Together, they faced trolls, orcs, goblins, spiders, and elves and developed friendships along the way.
+        Though they were successful in defeating Smaug and taking back their homeland, a battle ensued over the kingdom's
+        treasure between the dwarves, Elves and Men. Thorin initially refused to take part in the battle, but after
+        returning
+        from his gold sickness, had their company joined their allies to defeat the Orcs led by Azog himself. However,
+        during the conflict, Fili, Thorin and Kili lost their lives in the Battle while Bilbo returned to the Shire with a
+        small chest of gold and the rest of the company remained in Erebor with their newfound wealth.</p>
+
+    {% for member in company %}
+
+    <div class="row featurette">
+
+        {% if loop.index % 2 != 0 %}
+
+                <div class="col-md-7">
+                    <h3><a href= "/about/{{ member.url }}"> {{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" class="featurette-image image-responsive"
+                        alt="">
+                </div>
+
+        {% else %}
+
+                <div class="col-md-5">
+                            <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                        </div>
+                        <div class="col-md-7">
+                            <h3><a href= "/about/{{ member.url }}"> {{ loop.index }}. {{ member.name }}</a></h3>
+                            <p>{{ member.description }}</p>
+                </div>
+
+        {% endif %}
+    
+     </div>
+
+        {% if loop.index != loop.length %}
+
+                <hr class="featurette-divider">
+
+        {% endif %}
+
+        {% endfor %}
+
+{% endblock %}
